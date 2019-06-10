@@ -127,6 +127,7 @@ public class Player : MonoBehaviour
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, rb2d.velocity.y * 0.5f);
         }
+
         jumpBtnPress = false;
     }
 }

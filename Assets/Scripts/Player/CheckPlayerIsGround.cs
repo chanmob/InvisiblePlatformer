@@ -16,9 +16,4 @@ public class CheckPlayerIsGround : MonoBehaviour
         if(!collision.CompareTag("Player"))
             player.grounded = true;
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        //player.grounded = false;
-    }
 }
