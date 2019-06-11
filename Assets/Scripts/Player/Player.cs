@@ -17,9 +17,12 @@ public class Player : MonoBehaviour
     private bool invincibility;
     public bool isDead;
 
-    private Rigidbody2D rb2d;
+    [HideInInspector]
+    public Rigidbody2D rb2d;
     private Vector3 originalScale;
     private BoxCollider2D box2d;
+
+    private IEnumerator delayJump;
 
     void Start()
     {
@@ -116,7 +119,7 @@ public class Player : MonoBehaviour
 
         if (grounded)
         {
-            rb2d.AddForce(new Vector2(0, jumpForce));
+            AddForceToPlayer(new Vector2(0, jumpForce));
             grounded = false;
         }
     }
@@ -125,9 +128,36 @@ public class Player : MonoBehaviour
     {
         if(rb2d.velocity.y > 0)
         {
-            rb2d.velocity = new Vector2(rb2d.velocity.x, rb2d.velocity.y * 0.5f);
+            ForceVelocity(new Vector2(rb2d.velocity.x, rb2d.velocity.y * 0.5f));
         }
 
         jumpBtnPress = false;
+    }
+
+    public void DelayJump(float _delay)
+    {
+        if (delayJump != null)
+            return;
+
+        delayJump = DelayJumpCoroutine(_delay);
+        StartCoroutine(delayJump);
+    }
+
+    private IEnumerator DelayJumpCoroutine(float _delay)
+    {
+        yield return new WaitForSeconds(_delay);
+
+        grounded = true;
+        delayJump = null;
+    }
+
+    public void AddForceToPlayer(Vector2 _force)
+    {
+        rb2d.AddForce(_force);
+    }
+
+    public void ForceVelocity(Vector2 _velocity)
+    {
+        rb2d.velocity = _velocity;
     }
 }
