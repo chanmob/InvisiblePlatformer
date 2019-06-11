@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class MoveObject : MonoBehaviour
 {
-    public float speed;
-    public float distance;
+    private const float pixelSize = 0.4f;
 
+    public int space;
+
+    public float speed;
+    
     private float EarlyPos;
     private float pos;
 
@@ -35,7 +38,7 @@ public class MoveObject : MonoBehaviour
         }
 
 
-        if(pos >= EarlyPos + distance)
+        if(pos >= EarlyPos + (space * pixelSize))
         {
             opposition = true;
         }
@@ -58,6 +61,22 @@ public class MoveObject : MonoBehaviour
                 transform.Translate(Vector2.left * speed * Time.deltaTime);
             else
                 transform.Translate(Vector2.right * speed * Time.deltaTime);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && collision.contacts[0].normal.y <= -0.9f)
+        {
+            collision.transform.SetParent(this.transform);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.transform.SetParent(null);
         }
     }
 }
