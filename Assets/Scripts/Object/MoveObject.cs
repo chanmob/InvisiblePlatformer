@@ -13,6 +13,7 @@ public class MoveObject : MonoBehaviour
     private float EarlyPos;
     private float pos;
 
+    public bool reverse;
     public bool upperAndLower;
     private bool opposition;
 
@@ -24,6 +25,11 @@ public class MoveObject : MonoBehaviour
             EarlyPos = ealryPosition.y;
         else
             EarlyPos = ealryPosition.x;
+
+        if (reverse)
+        {
+            EarlyPos = EarlyPos - (space * pixelSize);
+        }
     }
 
     private void FixedUpdate()
