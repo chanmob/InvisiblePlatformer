@@ -119,7 +119,14 @@ public class Player : MonoBehaviour
 
         if (grounded)
         {
-            AddForceToPlayer(new Vector2(0, jumpForce));
+            if(Physics2D.gravity.y > 0)
+            {
+                AddForceToPlayer(new Vector2(0, -jumpForce));
+            }
+            else
+            {
+                AddForceToPlayer(new Vector2(0, jumpForce));
+            }
             grounded = false;
         }
     }
