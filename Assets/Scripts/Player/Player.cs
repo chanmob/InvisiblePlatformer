@@ -91,6 +91,11 @@ public class Player : MonoBehaviour
             transform.Translate(Vector2.right * speed * Time.deltaTime);
             //rb2d.AddForce(Vector2.right * speed * Time.deltaTime);
         }
+
+        if(rb2d.velocity.sqrMagnitude > 25)
+        {
+            rb2d.velocity = rb2d.velocity.normalized * 5f;
+        }
     }
 
     public void LeftButtonPress()
@@ -139,23 +144,6 @@ public class Player : MonoBehaviour
         }
 
         jumpBtnPress = false;
-    }
-
-    public void DelayJump(float _delay)
-    {
-        if (delayJump != null)
-            return;
-
-        delayJump = DelayJumpCoroutine(_delay);
-        StartCoroutine(delayJump);
-    }
-
-    private IEnumerator DelayJumpCoroutine(float _delay)
-    {
-        yield return new WaitForSeconds(_delay);
-
-        grounded = true;
-        delayJump = null;
     }
 
     public void AddForceToPlayer(Vector2 _force)

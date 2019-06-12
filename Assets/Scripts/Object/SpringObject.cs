@@ -6,13 +6,11 @@ public class SpringObject : MonoBehaviour
 {
     public float jumpForce;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.contacts[0].normal.y <= -0.9f && collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("PlayerGrounded"))
         {
-            var player = collision.gameObject.GetComponent<Player>();
-            player.grounded = false;
-            player.DelayJump(0.1f);
+            var player = collision.gameObject.GetComponentInParent<Player>();
             player.ForceVelocity(new Vector2(player.rb2d.velocity.x, 0));
             player.AddForceToPlayer(new Vector2(player.rb2d.velocity.x, jumpForce));
         }

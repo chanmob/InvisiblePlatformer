@@ -64,19 +64,19 @@ public class MoveObject : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && collision.contacts[0].normal.y <= -0.9f)
+        if (collision.gameObject.CompareTag("PlayerGrounded"))
         {
-            collision.transform.SetParent(this.transform);
+            collision.transform.parent.SetParent(this.transform);
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("PlayerGrounded"))
         {
-            collision.transform.SetParent(null);
+            collision.transform.parent.SetParent(null);
         }
     }
 }

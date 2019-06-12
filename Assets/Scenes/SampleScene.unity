@@ -568,7 +568,7 @@ GameObject:
   - component: {fileID: 304404278}
   m_Layer: 8
   m_Name: UpperCheck
-  m_TagString: Untagged
+  m_TagString: PlayerGrounded
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -623,7 +623,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.1}
+  m_Size: {x: 0.4, y: 0.1}
   m_EdgeRadius: 0
 --- !u!1 &519420028
 GameObject:
@@ -3200,7 +3200,7 @@ GameObject:
   - component: {fileID: 2119542440}
   m_Layer: 8
   m_Name: LowerCheck
-  m_TagString: Untagged
+  m_TagString: PlayerGrounded
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3255,7 +3255,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.1}
+  m_Size: {x: 0.4, y: 0.1}
   m_EdgeRadius: 0
 --- !u!4 &2132286472 stripped
 Transform:

@@ -18,14 +18,23 @@ public class AppearNextPlatform : MonoBehaviour
             StartCoroutine(NextPlatformCoroutine());
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && collision.contacts[0].normal.y <= -0.8f)
+        if (collision.gameObject.CompareTag("PlayerGrounded"))
         {
             if (nextPlatform != null)
                 nextPlatform.SetActive(true);
         }
     }
+
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player") && collision.contacts[0].normal.y <= -0.8f)
+    //    {
+    //        if (nextPlatform != null)
+    //            nextPlatform.SetActive(true);
+    //    }
+    //}
 
     private IEnumerator NextPlatformCoroutine()
     {
