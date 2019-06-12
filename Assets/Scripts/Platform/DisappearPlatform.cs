@@ -9,14 +9,6 @@ public class DisappearPlatform : MonoBehaviour
     public float delayDisappear;
     public float delayApeear;
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player") && collision.contacts[0].normal.y <= -0.9f)
-    //    {
-    //        StartCoroutine(Disappear());
-    //    }
-    //}
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerGrounded"))
