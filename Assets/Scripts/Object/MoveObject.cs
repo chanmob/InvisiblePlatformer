@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class MoveObject : MonoBehaviour
 {
-    private const float pixelSize = 0.4f;
-
     public int space;
+    public float size;
 
     public float speed;
     
@@ -15,6 +14,7 @@ public class MoveObject : MonoBehaviour
 
     public bool reverse;
     public bool upperAndLower;
+    public bool isPlatform;
     private bool opposition;
 
     void Start()
@@ -28,7 +28,7 @@ public class MoveObject : MonoBehaviour
 
         if (reverse)
         {
-            EarlyPos = EarlyPos - (space * pixelSize);
+            EarlyPos = EarlyPos - space.GetTileSize();
         }
     }
 
@@ -44,7 +44,7 @@ public class MoveObject : MonoBehaviour
         }
 
 
-        if(pos >= EarlyPos + (space * pixelSize))
+        if (pos >= EarlyPos + space.GetTileSize())
         {
             opposition = true;
         }
@@ -72,7 +72,7 @@ public class MoveObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("PlayerGrounded"))
+        if (collision.gameObject.CompareTag("PlayerGrounded") && isPlatform)
         {
             collision.transform.parent.SetParent(this.transform);
         }
@@ -80,7 +80,7 @@ public class MoveObject : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("PlayerGrounded"))
+        if (collision.gameObject.CompareTag("PlayerGrounded") && isPlatform)
         {
             collision.transform.parent.SetParent(null);
         }

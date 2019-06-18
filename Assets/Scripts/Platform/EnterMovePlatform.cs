@@ -17,26 +17,78 @@ public class EnterMovePlatform : MonoBehaviour
     private bool move;
 
     public float speed;
- 
+
+    public int maxSpace;
+
+    private Vector2 pos;
+
+    private void Start()
+    {
+        pos = transform.position;
+    }
+
     void FixedUpdate()
     {
         if (!move)
-            return;
-
-        switch (dir)
         {
-            case Direction.Up:
-                transform.Translate(Vector2.up * speed * Time.deltaTime);
-                break;
-            case Direction.Down:
-                transform.Translate(Vector2.down * speed * Time.deltaTime);
-                break;
-            case Direction.Left:
-                transform.Translate(Vector2.left * speed * Time.deltaTime);
-                break;
-            case Direction.Right:
-                transform.Translate(Vector2.right * speed * Time.deltaTime);
-                break;
+            switch (dir)
+            {
+                case Direction.Up:
+                    transform.Translate(Vector2.up * -speed * Time.deltaTime);
+
+                    if (transform.position.y <= pos.y)
+                        transform.position = pos;
+                    break;
+                case Direction.Down:
+                    transform.Translate(Vector2.down * -speed * Time.deltaTime);
+
+                    if (transform.position.y >= pos.y)
+                        transform.position = pos;
+                    break;
+                case Direction.Left:
+                    transform.Translate(Vector2.left * -speed * Time.deltaTime);
+
+                    if (transform.position.x >= pos.x)
+                        transform.position = pos;
+                    break;
+                case Direction.Right:
+                    transform.Translate(Vector2.right * -speed * Time.deltaTime);
+
+                    if (transform.position.x <= pos.x)
+                        transform.position = pos;
+                    break;
+            }
+        }
+        
+        else
+        {
+            switch (dir)
+            {
+                case Direction.Up:
+                    transform.Translate(Vector2.up * speed * Time.deltaTime);
+
+                    if (transform.position.y >= pos.y + maxSpace.GetTileSize())
+                        transform.position = new Vector2(pos.x, pos.y + maxSpace.GetTileSize());
+                    break;
+                case Direction.Down:
+                    transform.Translate(Vector2.down * speed * Time.deltaTime);
+
+                    if (transform.position.y <= pos.y - maxSpace.GetTileSize())
+                        transform.position = new Vector2(pos.x, pos.y - maxSpace.GetTileSize());
+                    break;
+                case Direction.Left:
+                    transform.Translate(Vector2.left * speed * Time.deltaTime);
+
+                    if (transform.position.x <= pos.x - maxSpace.GetTileSize())
+                        transform.position = new Vector2(pos.x - maxSpace.GetTileSize(), pos.y);
+                    break;
+                case Direction.Right:
+                    transform.Translate(Vector2.right * speed * Time.deltaTime);
+
+                    if (transform.position.x >= pos.x + maxSpace.GetTileSize())
+                        transform.position = new Vector2(pos.x + maxSpace.GetTileSize(), pos.y);
+                    break;
+            }
         }
     }
 
