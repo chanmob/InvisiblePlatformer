@@ -26,6 +26,8 @@ public class AutoDisappearPlatform : MonoBehaviour
         {
             yield return new WaitForSeconds(delayTime);
         }
+
+        StartCoroutine(Blink());
     }
 
     private IEnumerator Blink()

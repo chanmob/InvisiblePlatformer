@@ -10,17 +10,8 @@ public class GravityObject : MonoBehaviour
         { 
             Physics2D.gravity = new Vector2(Physics2D.gravity.x, -Physics2D.gravity.y);
 
-            var checks = collision.GetComponentsInChildren<CheckPlayerIsGround>(true);
-            if(Physics2D.gravity.y > 0)
-            {
-                checks[0].gameObject.SetActive(false);
-                checks[1].gameObject.SetActive(true);
-            }
-            else
-            {
-                checks[0].gameObject.SetActive(true);
-                checks[1].gameObject.SetActive(false);
-            }
+            var lc = collision.transform.localScale;
+            collision.transform.localScale = new Vector3(lc.x, -lc.y, lc.z);
         }
     }
 }

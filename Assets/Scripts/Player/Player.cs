@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -29,7 +28,6 @@ public class Player : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         box2d = GetComponent<BoxCollider2D>();
         playerLookRight = false;
-        originalScale = transform.localScale;
     }
 
     void Update()
@@ -75,7 +73,7 @@ public class Player : MonoBehaviour
             if (playerLookRight == true)
             {
                 playerLookRight = false;
-                transform.localScale = originalScale;
+                transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
             }
             transform.Translate(Vector2.left * speed * Time.deltaTime, Space.World);
             //rb2d.AddForce(Vector2.left * speed * Time.deltaTime);
@@ -86,7 +84,7 @@ public class Player : MonoBehaviour
             if (playerLookRight == false)
             {
                 playerLookRight = true;
-                transform.localScale = new Vector3(-originalScale.x, originalScale.y, originalScale.z);
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             }
             transform.Translate(Vector2.right * speed * Time.deltaTime, Space.World);
             //rb2d.AddForce(Vector2.right * speed * Time.deltaTime);

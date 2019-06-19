@@ -5,7 +5,6 @@ using UnityEngine;
 public class MoveObject : MonoBehaviour
 {
     public int space;
-    public float size;
 
     public float speed;
     
