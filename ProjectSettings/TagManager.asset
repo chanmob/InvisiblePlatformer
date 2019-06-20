@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerGrounded
   - Spring
+  - Path
   layers:
   - Default
   - TransparentFX
