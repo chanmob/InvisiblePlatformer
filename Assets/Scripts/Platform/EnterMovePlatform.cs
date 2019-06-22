@@ -94,16 +94,18 @@ public class EnterMovePlatform : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerGrounded"))
+        if (collision.gameObject.CompareTag("PlayerGrounded"))
         {
+            collision.transform.parent.SetParent(this.transform);
             move = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerGrounded"))
+        if (collision.gameObject.CompareTag("PlayerGrounded"))
         {
+            collision.transform.parent.SetParent(null);
             move = false;
         }
     }

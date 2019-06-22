@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     private bool leftBtnPress;
     private bool rightBtnPress;
     private bool jumpBtnPress;
-    private bool playerLookRight;
+    public bool playerLookRight;
     private bool invincibility;
     public bool isDead;
 
@@ -152,5 +152,13 @@ public class Player : MonoBehaviour
     public void ForceVelocity(Vector2 _velocity)
     {
         rb2d.velocity = _velocity;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Die"))
+        {
+
+        }
     }
 }

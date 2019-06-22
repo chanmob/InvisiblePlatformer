@@ -7,6 +7,8 @@ public class EnterActivePlatform : MonoBehaviour
 {
     public float disappearTime;
 
+    public GameObject[] disappearObject;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -18,5 +20,10 @@ public class EnterActivePlatform : MonoBehaviour
     private void Disappear()
     {
         gameObject.SetActive(false);
+
+        for(int i = 0; i < disappearObject.Length; i++)
+        {
+            disappearObject[i].SetActive(false);
+        }
     }
 }
