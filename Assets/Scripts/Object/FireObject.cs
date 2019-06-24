@@ -18,14 +18,14 @@ public class FireObject : MonoBehaviour
     public float startDelay;
     public float delayTime;
 
-    public BulletObject bulletPrefab;
-
     private IEnumerator Start()
     {
         if(startDelay > 0f)
         {
             yield return new WaitForSeconds(startDelay);
         }
+
+        StartCoroutine(FireCoroutine());
     }
 
     private IEnumerator FireCoroutine()
@@ -34,22 +34,25 @@ public class FireObject : MonoBehaviour
         {
             yield return new WaitForSeconds(delayTime);
 
-            var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            var bullet = ObjectPoolManager.instance.GetBullet();
+            bullet.transform.position = transform.position;
+            var bo = bullet.GetComponent<BulletObject>();
 
-            bullet.speed = speed;
+
+            bo.speed = speed;
             switch (direction)
             {
                 case Direction.Up:
-                    bullet.dir = BulletObject.Direction.Up;
+                    bo.dir = BulletObject.Direction.Up;
                     break;
                 case Direction.Down:
-                    bullet.dir = BulletObject.Direction.Down;
+                    bo.dir = BulletObject.Direction.Down;
                     break;
                 case Direction.Right:
-                    bullet.dir = BulletObject.Direction.Right;
+                    bo.dir = BulletObject.Direction.Right;
                     break;
                 case Direction.Left:
-                    bullet.dir = BulletObject.Direction.Left;
+                    bo.dir = BulletObject.Direction.Left;
                     break;
             }
         }

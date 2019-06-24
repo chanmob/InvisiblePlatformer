@@ -35,13 +35,16 @@ public class BulletObject : MonoBehaviour
         }
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    Destroy(this.gameObject);
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("BulletWall"))
+        {
+            ObjectPoolManager.instance.WaitBullet(this.gameObject);
+        }
+    }
 
     private void OnBecameInvisible()
     {
-        Debug.Log("Hello");
+        ObjectPoolManager.instance.WaitBullet(this.gameObject);
     }
 }
