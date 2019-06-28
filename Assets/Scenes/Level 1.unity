@@ -516,6 +516,7 @@ MonoBehaviour:
   speed: 3
   jumpForce: 250
   grounded: 0
+  playerLookRight: 0
   isDead: 0
   rb2d: {fileID: 0}
 --- !u!50 &613354294
@@ -2030,7 +2031,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapBox2d: {fileID: 0}
-  cameraBox2d: {fileID: 0}
   objectCam: {fileID: 1670310050}
 --- !u!1 &1670310050
 GameObject:
