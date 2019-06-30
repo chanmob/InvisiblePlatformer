@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8158857318803706441}
   - component: {fileID: 2013227846646408211}
   - component: {fileID: 8826814368666458042}
-  - component: {fileID: 5054455454731814047}
+  - component: {fileID: 911164797068059344}
   m_Layer: 9
   m_Name: MovingPlatform
   m_TagString: Untagged
@@ -70,8 +70,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d35bd11d6f2bc0d41b520e9f2e023fca, type: 3}
-  m_Color: {r: 1, g: 0.3726415, b: 0.3726415, a: 1}
+  m_Sprite: {fileID: 21300000, guid: bae67cd014bd75c4a886d6efaf03570f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -95,8 +95,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   space: 0
   speed: 0
+  reverse: 0
   upperAndLower: 0
---- !u!61 &5054455454731814047
+  isPlatform: 0
+--- !u!61 &911164797068059344
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,12 +115,12 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.4, y: 0.4}
+    oldSize: {x: 1.28, y: 1.28}
     newSize: {x: 0.4, y: 0.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
+  m_Size: {x: 1.28, y: 1.28}
   m_EdgeRadius: 0
