@@ -44,4 +44,19 @@ public class CameraBackground : MonoBehaviour
             yield return null;
         }
     }
+
+    public IEnumerator CameraBackgroundToWhite()
+    {
+        while (true)
+        {
+            cam.backgroundColor = Color.Lerp(cam.backgroundColor, Color.white, Time.deltaTime);
+
+            if(cam.backgroundColor == Color.white)
+            {
+                break;
+            }
+
+            yield return null;
+        }
+    }
 }

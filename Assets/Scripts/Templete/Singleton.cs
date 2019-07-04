@@ -32,17 +32,8 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
             if(_instance == null)
             {
                 var go = new GameObject(typeof(T).FullName);
-                DontDestroyOnLoad(go);
                 _instance = go.AddComponent<T>();
             }
-        }
-    }
-
-    protected virtual void Awake()
-    {
-        if (_instance != null)
-        {
-            Debug.LogError(GetType().Name + " 싱글톤 클래스 존재");
         }
     }
 

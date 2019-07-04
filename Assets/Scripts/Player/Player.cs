@@ -2,11 +2,9 @@
 using System.Collections;
 
 public class Player : MonoBehaviour
-{
-    public int hp = 5;
-
-    public float speed = 1000f;
-    public float jumpForce = 8.5f;
+{  
+    public float speed = 10;
+    public float jumpForce = 625;
     
     public bool grounded;
     private bool leftBtnPress;
@@ -20,8 +18,6 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb2d;
     private Vector3 originalScale;
     private BoxCollider2D box2d;
-
-    private IEnumerator delayJump;
 
     void Start()
     {
@@ -156,9 +152,19 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Die"))
+        if (collision.CompareTag("Die") && !isDead)
         {
-
+            Debug.Log("Hi");
+            isDead = true;
+            DieMarkManager.instance.DieMarkOnOff(true);
+            DieMarkManager.instance.CreateDieMark(this.transform.position);
+            Invoke("Die", 1f);
         }
+    }
+
+    private void Die()
+    {
+        DieMarkManager.instance.DieMarkOnOff(false);
+        SceneLoad.instance.LoadedSceneLoad();
     }
 }
