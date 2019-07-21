@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
 public class EnterActivePlatform : MonoBehaviour
 {
     public float disappearTime;
@@ -13,14 +12,14 @@ public class EnterActivePlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            gameObject.SetActive(false);
+
             Invoke("Disappear", disappearTime);
         }
     }
 
     private void Disappear()
     {
-        gameObject.SetActive(false);
-
         for(int i = 0; i < disappearObject.Length; i++)
         {
             disappearObject[i].SetActive(false);
