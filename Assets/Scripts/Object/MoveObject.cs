@@ -46,10 +46,20 @@ public class MoveObject : MonoBehaviour
         if (pos >= EarlyPos + space.GetTileSize())
         {
             opposition = true;
+
+            if (!isPlatform)
+            {
+                this.transform.localScale = new Vector3(1, 1, 1);
+            }
         }
         else if(pos <= EarlyPos)
         {
             opposition = false;
+
+            if (!isPlatform)
+            {
+                this.transform.localScale = new Vector3(-1, 1, 1);
+            }
         }
 
 

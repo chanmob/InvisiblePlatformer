@@ -8,6 +8,6 @@ public class RotateObject : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.Rotate(Vector2.right * speed * Time.deltaTime);
+        transform.Rotate(Vector3.forward * speed * Time.deltaTime);
     }
 }

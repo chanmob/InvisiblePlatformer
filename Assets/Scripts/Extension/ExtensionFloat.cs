@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class ExtensionFloat
 {
-    private static readonly float tileSize = 0.4f;
+    private static readonly float tileSize = 1.28f;
 
     public static float GetTileSize(this int _size)
     {
