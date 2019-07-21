@@ -1133,6 +1133,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 798531266}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &798531268 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5743812878281410858, guid: 327a7cca4653dab41b0dde2e18521aed,
+    type: 3}
+  m_PrefabInstance: {fileID: 798531266}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &831868334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1208,6 +1214,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 831868334}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &831868336 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5743812878281410858, guid: 327a7cca4653dab41b0dde2e18521aed,
+    type: 3}
+  m_PrefabInstance: {fileID: 831868334}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1010203036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1280,6 +1292,12 @@ PrefabInstance:
 --- !u!4 &1010203037 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1711679138021373949, guid: 327a7cca4653dab41b0dde2e18521aed,
+    type: 3}
+  m_PrefabInstance: {fileID: 1010203036}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1010203038 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5743812878281410858, guid: 327a7cca4653dab41b0dde2e18521aed,
     type: 3}
   m_PrefabInstance: {fileID: 1010203036}
   m_PrefabAsset: {fileID: 0}
@@ -1500,6 +1518,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9001562658156656974, guid: 5522e1f81172471459fd885534b8fdc2,
+        type: 3}
+      propertyPath: keyTileObjects.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001562658156656974, guid: 5522e1f81172471459fd885534b8fdc2,
+        type: 3}
+      propertyPath: keyTileObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 1010203038}
+    - target: {fileID: 9001562658156656974, guid: 5522e1f81172471459fd885534b8fdc2,
+        type: 3}
+      propertyPath: keyTileObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 831868336}
+    - target: {fileID: 9001562658156656974, guid: 5522e1f81172471459fd885534b8fdc2,
+        type: 3}
+      propertyPath: keyTileObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 798531268}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5522e1f81172471459fd885534b8fdc2, type: 3}
 --- !u!4 &1544592670 stripped
