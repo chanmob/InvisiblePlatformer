@@ -34,6 +34,11 @@ public class MoveOneDirectionPlatform : MonoBehaviour
 
                 if(transform.position.y >= pos.y + space.GetTileSize())
                 {
+                    if (this.transform.childCount != 0)
+                    {
+                        transform.GetChild(0).SetParent(null);
+                    }
+
                     transform.position = pos;
                 }
                 break;
@@ -42,6 +47,11 @@ public class MoveOneDirectionPlatform : MonoBehaviour
 
                 if (transform.position.y <= pos.y - space.GetTileSize())
                 {
+                    if (this.transform.childCount != 0)
+                    {
+                        transform.GetChild(0).SetParent(null);
+                    }
+
                     transform.position = pos;
                 }
                 break;
@@ -50,16 +60,26 @@ public class MoveOneDirectionPlatform : MonoBehaviour
 
                 if (transform.position.x <= pos.x - space.GetTileSize())
                 {
+                    if (this.transform.childCount != 0)
+                    {
+                        transform.GetChild(0).parent.SetParent(null);
+                    }
+
                     transform.position = pos;
                 }
                 break;
             case Direction.Right:
+                transform.Translate(Vector2.right * speed * Time.deltaTime);
 
                 if (transform.position.x >= pos.x + space.GetTileSize())
                 {
+                    if (this.transform.childCount != 0)
+                    {
+                        transform.GetChild(0).SetParent(null);
+                    }
+
                     transform.position = pos;
                 }
-                transform.Translate(Vector2.right * speed * Time.deltaTime);
                 break;
         }
     }
