@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class CameraBackground : MonoBehaviour
 {
-    private Camera cam;
+    private Camera playerCamera;
+    public Camera objectCamera;
 
     private void Start()
     {
-        cam = GetComponent<Camera>();
+        playerCamera = GetComponent<Camera>();
         StartCoroutine(CameraBackgroundControl());
     }
 
@@ -31,9 +32,10 @@ public class CameraBackground : MonoBehaviour
         while (true)
         {
             color = colors[idx];
-            cam.backgroundColor = Color.Lerp(cam.backgroundColor, color, 2.5f * Time.deltaTime);
+            playerCamera.backgroundColor = Color.Lerp(playerCamera.backgroundColor, color, 2.5f * Time.deltaTime);
+            objectCamera.backgroundColor = Color.Lerp(objectCamera.backgroundColor, color, 2.5f * Time.deltaTime);
 
-            if (cam.backgroundColor == color)
+            if (playerCamera.backgroundColor == color && objectCamera.backgroundColor == color)
             {
                 idx++;
 
@@ -49,9 +51,10 @@ public class CameraBackground : MonoBehaviour
     {
         while (true)
         {
-            cam.backgroundColor = Color.Lerp(cam.backgroundColor, Color.white, Time.deltaTime);
+            playerCamera.backgroundColor = Color.Lerp(playerCamera.backgroundColor, Color.white, Time.deltaTime);
+            objectCamera.backgroundColor = Color.Lerp(objectCamera.backgroundColor, Color.white, Time.deltaTime);
 
-            if(cam.backgroundColor == Color.white)
+            if (playerCamera.backgroundColor == Color.white && objectCamera.backgroundColor == Color.white)
             {
                 break;
             }

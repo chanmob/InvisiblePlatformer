@@ -10,6 +10,7 @@ public class GameManager : Singleton<GameManager>
     private Text timeText;
 
     public GameObject result;
+    public GameObject mobileController;
 
     private float time;
 
@@ -38,6 +39,8 @@ public class GameManager : Singleton<GameManager>
     private IEnumerator EndGameCoroutine()
     {
         end = true;
+        mobileController.SetActive(false);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().isDead = true;
 
         var cc = GameObject.FindObjectOfType<CameraBackground>();
 
