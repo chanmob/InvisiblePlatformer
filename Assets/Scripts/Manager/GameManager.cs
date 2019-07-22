@@ -30,7 +30,12 @@ public class GameManager : Singleton<GameManager>
         timeText.text = time.ToString("0.00");
     }
 
-    public IEnumerator EndGameCoroutine()
+    public void GameEnd()
+    {
+        StartCoroutine(EndGameCoroutine());
+    }
+
+    private IEnumerator EndGameCoroutine()
     {
         end = true;
 
@@ -38,7 +43,7 @@ public class GameManager : Singleton<GameManager>
 
         yield return StartCoroutine(cc.CameraBackgroundToWhite());
 
-        string saveName = SceneManager.GetActiveScene().name;
+        string saveName = SceneManager.GetActiveScene().name + "Clear";
 
         SaveAndLoad.instance.HasData(saveName, exist => 
         {

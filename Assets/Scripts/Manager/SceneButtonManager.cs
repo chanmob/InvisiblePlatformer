@@ -8,19 +8,24 @@ public class SceneButtonManager : MonoBehaviour
 {
     private readonly string sceneName = "Level";
 
-    private List<Button> sceneButtonList = new List<Button>();
+    private Button[] sceneButtonList;
 
     void Start()
     {
-        sceneButtonList = GetComponentsInChildren<Button>().ToList();
+        sceneButtonList = GetComponentsInChildren<Button>();
 
         int count = 1;
 
-        foreach(var b in sceneButtonList)
+        for (int i = 0; i < sceneButtonList.Length; i++)
         {
             string listenerSceneName = sceneName + " " + count;
+            sceneButtonList[i].onClick.AddListener(() => SceneLoad.instance.LoadScene(listenerSceneName));
 
-            b.onClick.AddListener(() => SceneLoad.instance.LoadScene(listenerSceneName));
+            var txt = sceneButtonList[i].transform.FindInChildren("Time").GetComponent<Text>();
+            string loadName = sceneName + " " + count + "Clear";
+
+            txt.text = SaveAndLoad.instance.LoadFloatData(loadName).ToString("0.00");
+
             count++;
         }
     }

@@ -8,6 +8,8 @@ public class ClearObject : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            GameManager.instance.GameEnd();
+
             Debug.Log("End");
         }
     }
