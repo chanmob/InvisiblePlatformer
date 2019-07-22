@@ -11,10 +11,11 @@ public class MoveObject : MonoBehaviour
     private float EarlyPos;
     private float pos;
 
+    public bool wall;
     public bool reverse;
     public bool upperAndLower;
     public bool isPlatform;
-    private bool opposition;
+    public bool opposition;
 
     void Start()
     {
@@ -43,7 +44,7 @@ public class MoveObject : MonoBehaviour
         }
 
 
-        if (pos >= EarlyPos + space.GetTileSize())
+        if (pos >= EarlyPos + space.GetTileSize() && !wall)
         {
             opposition = true;
 
@@ -52,7 +53,7 @@ public class MoveObject : MonoBehaviour
                 this.transform.localScale = new Vector3(1, 1, 1);
             }
         }
-        else if(pos <= EarlyPos)
+        else if(pos <= EarlyPos && !wall)
         {
             opposition = false;
 
@@ -81,6 +82,20 @@ public class MoveObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (wall)
+        {
+            opposition = !opposition;
+
+            if (!isPlatform && opposition)
+            {
+                this.transform.localScale = new Vector3(1, 1, 1);
+            }
+            else if (!isPlatform && !opposition)
+            {
+                this.transform.localScale = new Vector3(-1, 1, 1);
+            }
+        }
+
         if (collision.gameObject.CompareTag("PlayerGrounded") && isPlatform)
         {
             collision.transform.parent.SetParent(this.transform);
