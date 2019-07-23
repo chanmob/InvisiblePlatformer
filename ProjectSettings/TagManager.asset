@@ -9,6 +9,7 @@ TagManager:
   - Path
   - Die
   - BulletWall
+  - Ground
   layers:
   - Default
   - TransparentFX

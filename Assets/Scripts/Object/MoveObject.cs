@@ -43,23 +43,25 @@ public class MoveObject : MonoBehaviour
             pos = transform.position.x;
         }
 
-
-        if (pos >= EarlyPos + space.GetTileSize() && !wall)
+        if(!wall)
         {
-            opposition = true;
-
-            if (!isPlatform)
+            if (pos >= EarlyPos + space.GetTileSize())
             {
-                this.transform.localScale = new Vector3(1, 1, 1);
+                opposition = true;
+
+                if (!isPlatform)
+                {
+                    this.transform.localScale = new Vector3(1, 1, 1);
+                }
             }
-        }
-        else if(pos <= EarlyPos && !wall)
-        {
-            opposition = false;
-
-            if (!isPlatform)
+            else if (pos <= EarlyPos)
             {
-                this.transform.localScale = new Vector3(-1, 1, 1);
+                opposition = false;
+
+                if (!isPlatform)
+                {
+                    this.transform.localScale = new Vector3(-1, 1, 1);
+                }
             }
         }
 
@@ -82,19 +84,19 @@ public class MoveObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (wall)
-        {
-            opposition = !opposition;
+        //if (wall)
+        //{
+        //    opposition = !opposition;
 
-            if (!isPlatform && opposition)
-            {
-                this.transform.localScale = new Vector3(1, 1, 1);
-            }
-            else if (!isPlatform && !opposition)
-            {
-                this.transform.localScale = new Vector3(-1, 1, 1);
-            }
-        }
+        //    if (!isPlatform && opposition)
+        //    {
+        //        this.transform.localScale = new Vector3(1, 1, 1);
+        //    }
+        //    else if (!isPlatform && !opposition)
+        //    {
+        //        this.transform.localScale = new Vector3(-1, 1, 1);
+        //    }
+        //}
 
         if (collision.gameObject.CompareTag("PlayerGrounded") && isPlatform)
         {
@@ -107,6 +109,23 @@ public class MoveObject : MonoBehaviour
         if (collision.gameObject.CompareTag("PlayerGrounded") && isPlatform)
         {
             collision.transform.parent.SetParent(null);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (wall && collision.gameObject.CompareTag("Ground"))
+        {
+            opposition = !opposition;
+
+            if (!isPlatform && opposition)
+            {
+                this.transform.localScale = new Vector3(1, 1, 1);
+            }
+            else if (!isPlatform && !opposition)
+            {
+                this.transform.localScale = new Vector3(-1, 1, 1);
+            }
         }
     }
 }
