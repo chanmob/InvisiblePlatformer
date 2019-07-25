@@ -10,6 +10,8 @@ TagManager:
   - Die
   - BulletWall
   - Ground
+  - Controller
+  - GameUI
   layers:
   - Default
   - TransparentFX

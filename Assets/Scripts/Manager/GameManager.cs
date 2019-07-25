@@ -3,37 +3,62 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 using CodeStage.AntiCheat.ObscuredTypes;
 
 public class GameManager : Singleton<GameManager>
 {
     private Text timeText;
 
-    public GameObject result;
-    public GameObject mobileController;
+    private GameObject mobileController;
+    private GameObject pausePanel;
+    private GameObject resultPanel;
 
     private float time;
 
     private bool end = false;
 
-    private void Start()
+    private void Awake()
     {
-        timeText = GameObject.FindGameObjectWithTag("TimeText").GetComponent<Text>();
+        mobileController = GameObject.FindGameObjectWithTag("Controller");
+        var ui = GameObject.FindGameObjectWithTag("GameUI");
+
+        timeText = ui.transform.FindInChildren("TimeText").GetComponent<Text>();
+        pausePanel = ui.transform.FindInChildren("ResumePanel");
+        resultPanel = ui.transform.FindInChildren("ResultPanel");
+
+        pausePanel.SetActive(false);
+        resultPanel.SetActive(false);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (end)
             return;
 
-        time += Time.deltaTime;
+        var ts = TimeSpan.FromSeconds(Time.time);
 
-        timeText.text = time.ToString("0.00");
+        if (ts.Hours >= 1)
+            timeText.text = string.Format("{0:0} : {1:00} : {2:00}", ts.Hours, ts.Minutes, ts.Seconds);
+        else
+            timeText.text = string.Format("{0:00} : {1:00} : {2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds);
     }
 
     public void GameEnd()
     {
         StartCoroutine(EndGameCoroutine());
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        mobileController.SetActive(false);
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        mobileController.SetActive(true);
     }
 
     private IEnumerator EndGameCoroutine()
@@ -65,6 +90,6 @@ public class GameManager : Singleton<GameManager>
             }
         });
 
-        result.SetActive(true);
+        resultPanel.SetActive(true);
     }
 }
