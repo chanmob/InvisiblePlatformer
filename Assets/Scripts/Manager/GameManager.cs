@@ -23,9 +23,11 @@ public class GameManager : Singleton<GameManager>
         mobileController = GameObject.FindGameObjectWithTag("Controller");
         var ui = GameObject.FindGameObjectWithTag("GameUI");
 
-        timeText = ui.transform.FindInChildren("TimeText").GetComponent<Text>();
-        pausePanel = ui.transform.FindInChildren("ResumePanel");
-        resultPanel = ui.transform.FindInChildren("ResultPanel");
+        var objectinUI = ui.GetComponentsInChildren<Transform>(true);
+
+        timeText = objectinUI.FindInObjects("TimeText").GetComponent<Text>();
+        pausePanel = objectinUI.FindInObjects("ResumePanel");
+        resultPanel = objectinUI.FindInObjects("ResultPanel");
     }
 
     private void FixedUpdate()
@@ -88,5 +90,22 @@ public class GameManager : Singleton<GameManager>
         });
 
         resultPanel.SetActive(true);
+    }
+
+    private void OpenNextScene()
+    {
+        var idx = SceneLoad.instance.GetLoadedSceneIndex();
+        idx++;
+        SceneLoad.instance.LoadScene(idx);
+    }
+
+    private void MainScene()
+    {
+        SceneLoad.instance.LoadScene("Main");
+    }
+
+    private void QuitGame()
+    {
+        Application.Quit();
     }
 }

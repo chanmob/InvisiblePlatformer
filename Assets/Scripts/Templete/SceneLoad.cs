@@ -19,4 +19,14 @@ public class SceneLoad : Singleton<SceneLoad>
     {
         SceneManager.LoadScene(_sceneIdx);
     }
+
+    public string GetLoadedSceneName()
+    {
+        return SceneManager.GetActiveScene().name;
+    }
+
+    public int GetLoadedSceneIndex()
+    {
+        return SceneManager.GetActiveScene().buildIndex;
+    }
 }
