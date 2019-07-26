@@ -21,10 +21,13 @@ public class SceneButtonManager : MonoBehaviour
             string listenerSceneName = sceneName + " " + count;
             sceneButtonList[i].onClick.AddListener(() => SceneLoad.instance.LoadScene(listenerSceneName));
 
-            var txt = sceneButtonList[i].transform.FindInChildren("Time").GetComponent<Text>();
+            var stageText = sceneButtonList[i].transform.FindInChildren("Text").GetComponent<Text>();
+            stageText.text = "스테이지 " + (i + 1);
+
+            var timeText = sceneButtonList[i].transform.FindInChildren("Time").GetComponent<Text>();
             string loadName = sceneName + " " + count + "Clear";
 
-            txt.text = SaveAndLoad.instance.LoadFloatData(loadName).ToString("0.00");
+            timeText.text = SaveAndLoad.instance.LoadFloatData(loadName).ToString("0.00");
 
             count++;
         }
