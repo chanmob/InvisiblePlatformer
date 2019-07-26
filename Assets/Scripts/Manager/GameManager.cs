@@ -26,9 +26,6 @@ public class GameManager : Singleton<GameManager>
         timeText = ui.transform.FindInChildren("TimeText").GetComponent<Text>();
         pausePanel = ui.transform.FindInChildren("ResumePanel");
         resultPanel = ui.transform.FindInChildren("ResultPanel");
-
-        pausePanel.SetActive(false);
-        resultPanel.SetActive(false);
     }
 
     private void FixedUpdate()

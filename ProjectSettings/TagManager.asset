@@ -12,6 +12,7 @@ TagManager:
   - Ground
   - Controller
   - GameUI
+  - Key
   layers:
   - Default
   - TransparentFX

@@ -5,16 +5,24 @@ using UnityEngine;
 public class StickOutObject : MonoBehaviour
 {
     public float stickTime;
-    public float delayTime;
+    public float delayAppearTime;
+    public float delayDisapperTime;
+    public float startDelayTime;
 
     private bool sticked;
 
     public Vector2 spaceVec;
     private Vector2 pos;
 
-    private void Start()
+    private IEnumerator Start()
     {
         pos = transform.position;
+
+        if(startDelayTime > 0)
+        {
+            yield return new WaitForSeconds(startDelayTime);
+        }
+
         StartCoroutine(StickCoroutine());
     }
 
@@ -22,10 +30,10 @@ public class StickOutObject : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(delayTime);
-
             if (sticked)
             {
+                yield return new WaitForSeconds(delayDisapperTime);
+
                 Vector2 goalPos = new Vector2(pos.x + ((int)spaceVec.x).GetTileSize(), pos.y + ((int)spaceVec.y).GetTileSize());
 
                 while (Vector2.Distance(transform.position, goalPos) >= 0.01f)
@@ -38,6 +46,8 @@ public class StickOutObject : MonoBehaviour
             }
             else
             {
+                yield return new WaitForSeconds(delayAppearTime);
+
                 while (Vector2.Distance(transform.position, pos) >= 0.01f)
                 {
                     transform.position = Vector2.Lerp(transform.position, pos, stickTime * Time.deltaTime);
