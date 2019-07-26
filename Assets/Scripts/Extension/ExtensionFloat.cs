@@ -13,4 +13,12 @@ public static class ExtensionFloat
 
         return returnValue;
     }
+
+    public static float GetTileSize(this float _size)
+    {
+        float returnValue = 0;
+        returnValue = _size * tileSize;
+
+        return returnValue;
+    }
 }
