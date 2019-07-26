@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
 {  
     public float speed = 10;
     public float jumpForce = 625;
-    
+
     public bool grounded;
     private bool leftBtnPress;
     private bool rightBtnPress;
@@ -86,10 +86,10 @@ public class Player : MonoBehaviour
             //rb2d.AddForce(Vector2.right * speed * Time.deltaTime);
         }
 
-        //if(rb2d.velocity.sqrMagnitude > 25)
-        //{
-        //    rb2d.velocity = rb2d.velocity.normalized * 5f;
-        //}
+        if (rb2d.velocity.sqrMagnitude > 150)
+        {
+            rb2d.velocity = rb2d.velocity.normalized * 12.5f;
+        }
     }
 
     public void LeftButtonPress()
