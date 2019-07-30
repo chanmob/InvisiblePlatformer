@@ -13,6 +13,7 @@ public class LeftButton : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         IsPressed = false;
         RightSide = false;
         LeftSide = false;

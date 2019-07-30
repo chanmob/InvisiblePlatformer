@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 
-public class SceneButtonManager : MonoBehaviour
+public class SceneButtonManager : Singleton<SceneButtonManager>
 {
     private readonly string sceneName = "Level";
 
-    private Button[] sceneButtonList;
+    public Button[] sceneButtonList;
 
     void Start()
     {
