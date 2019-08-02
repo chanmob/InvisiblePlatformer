@@ -24,7 +24,8 @@ public class DieMarkManager : Singleton<DieMarkManager>
     {
         for(int i = 0; i < markLists.Count; i++)
         {
-            markLists[i].transform.localScale = new Vector2(0.8f, 0.8f);
+            if(markLists[i].transform.localScale != new Vector3(1.75f, 1.75f, 1f))
+                markLists[i].transform.localScale = new Vector2(1.75f, 1.75f);
             markLists[i].SetActive(_on);
         }
     }

@@ -158,6 +158,20 @@ public class Player : MonoBehaviour
             isDead = true;
             DieMarkManager.instance.DieMarkOnOff(true);
             DieMarkManager.instance.CreateDieMark(this.transform.position);
+            this.gameObject.SetActive(false);
+            Invoke("Die", 1f);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Die") && !isDead)
+        {
+            Debug.Log("Hi");
+            isDead = true;
+            DieMarkManager.instance.DieMarkOnOff(true);
+            DieMarkManager.instance.CreateDieMark(this.transform.position);
+            this.gameObject.SetActive(false);
             Invoke("Die", 1f);
         }
     }
