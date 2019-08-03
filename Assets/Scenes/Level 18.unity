@@ -358,7 +358,7 @@ SurfaceEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Speed: 1
+  m_Speed: 2
   m_SpeedVariation: 0
   m_ForceScale: 0.1
   m_UseContactForce: 0
@@ -466,6 +466,81 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1367504426092621259, guid: 563b4257a17ecc44cbdbccb86d3bf16e,
     type: 3}
   m_PrefabInstance: {fileID: 196390768}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &281311946
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1105470039}
+    m_Modifications:
+    - target: {fileID: 2123319309878137086, guid: 11e1d749e0531684a9d957e02a778069,
+        type: 3}
+      propertyPath: m_Name
+      value: Box
+      objectReference: {fileID: 0}
+    - target: {fileID: 7084740908495114735, guid: 11e1d749e0531684a9d957e02a778069,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.9185
+      objectReference: {fileID: 0}
+    - target: {fileID: 7084740908495114735, guid: 11e1d749e0531684a9d957e02a778069,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.63949996
+      objectReference: {fileID: 0}
+    - target: {fileID: 7084740908495114735, guid: 11e1d749e0531684a9d957e02a778069,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7084740908495114735, guid: 11e1d749e0531684a9d957e02a778069,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7084740908495114735, guid: 11e1d749e0531684a9d957e02a778069,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7084740908495114735, guid: 11e1d749e0531684a9d957e02a778069,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7084740908495114735, guid: 11e1d749e0531684a9d957e02a778069,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7084740908495114735, guid: 11e1d749e0531684a9d957e02a778069,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7084740908495114735, guid: 11e1d749e0531684a9d957e02a778069,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7084740908495114735, guid: 11e1d749e0531684a9d957e02a778069,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7084740908495114735, guid: 11e1d749e0531684a9d957e02a778069,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 11e1d749e0531684a9d957e02a778069, type: 3}
+--- !u!4 &281311947 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7084740908495114735, guid: 11e1d749e0531684a9d957e02a778069,
+    type: 3}
+  m_PrefabInstance: {fileID: 281311946}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &348241028
 GameObject:
@@ -1496,7 +1571,7 @@ SurfaceEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Speed: 1
+  m_Speed: -2
   m_SpeedVariation: 0
   m_ForceScale: 0.1
   m_UseContactForce: 0
@@ -1769,7 +1844,7 @@ SurfaceEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Speed: 1
+  m_Speed: 2
   m_SpeedVariation: 0
   m_ForceScale: 0.1
   m_UseContactForce: 0
@@ -1918,7 +1993,7 @@ SurfaceEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Speed: 1
+  m_Speed: 2
   m_SpeedVariation: 0
   m_ForceScale: 0.1
   m_UseContactForce: 0
@@ -2337,6 +2412,7 @@ Transform:
   - {fileID: 1161374078}
   - {fileID: 623717457}
   - {fileID: 454891874}
+  - {fileID: 281311947}
   m_Father: {fileID: 121254473}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3224,7 +3300,7 @@ SurfaceEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Speed: 1
+  m_Speed: -2
   m_SpeedVariation: 0
   m_ForceScale: 0.1
   m_UseContactForce: 0
