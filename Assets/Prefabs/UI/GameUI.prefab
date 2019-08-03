@@ -991,7 +991,7 @@ GameObject:
   - component: {fileID: 7868457412058828503}
   - component: {fileID: 7868457412058828502}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Clear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1149,7 +1149,7 @@ GameObject:
   - component: {fileID: 7868457412300676751}
   - component: {fileID: 7868457412300676750}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: ClearTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1579,7 +1579,7 @@ GameObject:
   - component: {fileID: 7868457412762500982}
   - component: {fileID: 7868457412762500981}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: BestTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

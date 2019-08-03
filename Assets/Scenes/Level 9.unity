@@ -252,6 +252,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Die
       objectReference: {fileID: 0}
+    - target: {fileID: 4324726840094680867, guid: 6cdd5b3b42b380d4ea3007fdefbdf585,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7834137233597177725, guid: 6cdd5b3b42b380d4ea3007fdefbdf585,
         type: 3}
       propertyPath: m_LocalPosition.x

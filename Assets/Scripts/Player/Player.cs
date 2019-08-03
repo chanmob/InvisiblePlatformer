@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
 
         rb2d.gravityScale = 3;
         speed = 10;
-        jumpForce = 750;
+        jumpForce = 800;
     }
 
     void Update()
@@ -88,10 +88,10 @@ public class Player : MonoBehaviour
             transform.Translate(Vector2.right * speed * Time.deltaTime, Space.World);
             //rb2d.AddForce(Vector2.right * speed * Time.deltaTime);
         }
-
-        if (rb2d.velocity.sqrMagnitude > 200)
+        
+        if (rb2d.velocity.sqrMagnitude > 210)
         {
-            rb2d.velocity = rb2d.velocity.normalized * 14;
+            rb2d.velocity = rb2d.velocity.normalized * 15;
         }
     }
 

@@ -67,6 +67,10 @@ public class GameManager : Singleton<GameManager>
 
         StartCoroutine(cc.CameraBackgroundToWhite());
 
+        string[] sceneName = SceneManager.GetActiveScene().name.Split(' ');
+        int level = int.Parse(sceneName[1]);
+        Debug.Log(level);
+        SaveAndLoad.instance.SaveIntData("CurLevel", level);
         string saveName = SceneManager.GetActiveScene().name + "Clear";
         float time = (float)timespan.TotalSeconds;
 
@@ -95,7 +99,7 @@ public class GameManager : Singleton<GameManager>
         resultPanel.transform.FindInChildren("ClearTime").GetComponent<Text>().text = string.Format("클리어 시간 : " + "{0:00} : {1:00} : {2:000}", timespan.Minutes + t, timespan.Seconds, timespan.Milliseconds);
 
         TimeSpan ts = TimeSpan.FromSeconds(time);
-        resultPanel.transform.FindInChildren("BestTime").GetComponent<Text>().text = string.Format("최고 기록 : " + "{0:00} : {1:00} + {2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds);
+        resultPanel.transform.FindInChildren("BestTime").GetComponent<Text>().text = string.Format("최고 기록 : " + "{0:00} : {1:00} : {2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds);
 
         yield return new WaitForSeconds(2f);
 
