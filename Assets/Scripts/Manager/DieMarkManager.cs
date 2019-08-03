@@ -32,6 +32,15 @@ public class DieMarkManager : Singleton<DieMarkManager>
 
     public void ClearDieMark()
     {
+        var marks = transform.GetcomponentsRealChildren<Transform>();
+
+        for(int i = 0; i < marks.Length; i++)
+        {
+            Destroy(marks[i].gameObject);
+        }
+
         markLists.Clear();
+
+        Destroy(this.gameObject);
     }
 }

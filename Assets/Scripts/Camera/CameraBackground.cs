@@ -7,10 +7,13 @@ public class CameraBackground : MonoBehaviour
     private Camera playerCamera;
     public Camera objectCamera;
 
+    private IEnumerator BackgroundCoroutine;
+
     private void Start()
     {
         playerCamera = GetComponent<Camera>();
-        StartCoroutine(CameraBackgroundControl());
+        BackgroundCoroutine = CameraBackgroundControl();
+        StartCoroutine(BackgroundCoroutine);
     }
 
     private IEnumerator CameraBackgroundControl()
@@ -49,15 +52,12 @@ public class CameraBackground : MonoBehaviour
 
     public IEnumerator CameraBackgroundToWhite()
     {
-        while (true)
+        StopCoroutine(BackgroundCoroutine);
+
+        while(playerCamera.backgroundColor != Color.white && objectCamera.backgroundColor != Color.white)
         {
             playerCamera.backgroundColor = Color.Lerp(playerCamera.backgroundColor, Color.white, Time.deltaTime);
             objectCamera.backgroundColor = Color.Lerp(objectCamera.backgroundColor, Color.white, Time.deltaTime);
-
-            if (playerCamera.backgroundColor == Color.white && objectCamera.backgroundColor == Color.white)
-            {
-                break;
-            }
 
             yield return null;
         }

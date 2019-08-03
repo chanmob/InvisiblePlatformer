@@ -6,6 +6,14 @@ public class SpringObject : MonoBehaviour
 {
     public float jumpForce;
 
+    public bool change = false;
+
+    private void Start()
+    {
+        if(!change)
+            jumpForce = 750;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerGrounded"))

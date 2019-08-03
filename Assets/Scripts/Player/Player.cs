@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     public bool grounded;
     private bool leftBtnPress;
     private bool rightBtnPress;
-    private bool jumpBtnPress;
     public bool playerLookRight;
     private bool invincibility;
     public bool isDead;
@@ -24,6 +23,10 @@ public class Player : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         box2d = GetComponent<BoxCollider2D>();
         playerLookRight = false;
+
+        rb2d.gravityScale = 3;
+        speed = 10;
+        jumpForce = 750;
     }
 
     void Update()
@@ -86,9 +89,9 @@ public class Player : MonoBehaviour
             //rb2d.AddForce(Vector2.right * speed * Time.deltaTime);
         }
 
-        if (rb2d.velocity.sqrMagnitude > 150)
+        if (rb2d.velocity.sqrMagnitude > 200)
         {
-            rb2d.velocity = rb2d.velocity.normalized * 12.5f;
+            rb2d.velocity = rb2d.velocity.normalized * 14;
         }
     }
 
@@ -114,11 +117,9 @@ public class Player : MonoBehaviour
 
     public void JumpButtonPress()
     {
-        jumpBtnPress = true;
-
         if (grounded)
         {
-            if(Physics2D.gravity.y > 0)
+            if (rb2d.gravityScale < 0)
             {
                 AddForceToPlayer(new Vector2(0, -jumpForce));
             }
@@ -136,8 +137,6 @@ public class Player : MonoBehaviour
         {
             ForceVelocity(new Vector2(rb2d.velocity.x, rb2d.velocity.y * 0.5f));
         }
-
-        jumpBtnPress = false;
     }
 
     public void AddForceToPlayer(Vector2 _force)
@@ -161,6 +160,17 @@ public class Player : MonoBehaviour
             this.gameObject.SetActive(false);
             Invoke("Die", 1f);
         }
+
+        else if(collision.CompareTag("Clear") && !isDead)
+        {
+            Debug.Log("End Game");
+            isDead = true;
+            rb2d.velocity = new Vector2(0, 0);
+            rb2d.gravityScale = 0;
+            gameObject.layer = 9;
+            StartCoroutine(EndCoroutine(collision.transform.position));
+            GameManager.instance.GameEnd();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -180,5 +190,21 @@ public class Player : MonoBehaviour
     {
         DieMarkManager.instance.DieMarkOnOff(false);
         SceneLoad.instance.LoadedSceneLoad();
+    }
+
+    public IEnumerator EndCoroutine(Vector3 _clearPosition)
+    {
+        float diff = float.MaxValue;
+
+        while(diff >= 0.005f)
+        {
+            diff = (_clearPosition - transform.position).sqrMagnitude;
+            
+            transform.position = Vector2.Lerp(transform.position, _clearPosition, 1f * Time.deltaTime);
+
+            yield return null;
+        }
+
+        transform.position = _clearPosition;   
     }
 }

@@ -14,9 +14,9 @@ public class GameManager : Singleton<GameManager>
     private GameObject pausePanel;
     private GameObject resultPanel;
 
-    private float time;
-
     private bool end = false;
+
+    private TimeSpan timespan;
 
     private void Awake()
     {
@@ -35,12 +35,9 @@ public class GameManager : Singleton<GameManager>
         if (end)
             return;
 
-        var ts = TimeSpan.FromSeconds(Time.time);
-
-        if (ts.Hours >= 1)
-            timeText.text = string.Format("{0:0} : {1:00} : {2:00}", ts.Hours, ts.Minutes, ts.Seconds);
-        else
-            timeText.text = string.Format("{0:00} : {1:00} : {2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds);
+        timespan = TimeSpan.FromSeconds(Time.time);
+        var t = timespan.TotalHours * 60;
+        timeText.text = string.Format("{0:00} : {1:00} : {2:000}", timespan.Minutes + t, timespan.Seconds, timespan.Milliseconds);
     }
 
     public void GameEnd()
@@ -68,19 +65,24 @@ public class GameManager : Singleton<GameManager>
 
         var cc = GameObject.FindObjectOfType<CameraBackground>();
 
-        yield return StartCoroutine(cc.CameraBackgroundToWhite());
+        StartCoroutine(cc.CameraBackgroundToWhite());
 
         string saveName = SceneManager.GetActiveScene().name + "Clear";
+        float time = (float)timespan.TotalSeconds;
 
-        SaveAndLoad.instance.HasData(saveName, exist => 
+        SaveAndLoad.instance.HasData(saveName, exist =>
         {
             if (exist)
             {
                 float beforeData = SaveAndLoad.instance.LoadFloatData(saveName);
 
-                if(time > beforeData)
+                if (time > beforeData)
                 {
                     SaveAndLoad.instance.SaveFloatData(saveName, time);
+                }
+                else
+                {
+                    time = beforeData;
                 }
             }
             else
@@ -88,6 +90,14 @@ public class GameManager : Singleton<GameManager>
                 SaveAndLoad.instance.SaveFloatData(saveName, time);
             }
         });
+
+        var t = timespan.TotalHours * 60;
+        resultPanel.transform.FindInChildren("ClearTime").GetComponent<Text>().text = string.Format("클리어 시간 : " + "{0:00} : {1:00} : {2:000}", timespan.Minutes + t, timespan.Seconds, timespan.Milliseconds);
+
+        TimeSpan ts = TimeSpan.FromSeconds(time);
+        resultPanel.transform.FindInChildren("BestTime").GetComponent<Text>().text = string.Format("최고 기록 : " + "{0:00} : {1:00} + {2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds);
+
+        yield return new WaitForSeconds(2f);
 
         resultPanel.SetActive(true);
     }
@@ -101,6 +111,9 @@ public class GameManager : Singleton<GameManager>
 
     private void MainScene()
     {
+        var mm = GameObject.Find("DieMarkManager").GetComponent<DieMarkManager>();
+        mm.ClearDieMark();
+
         SceneLoad.instance.LoadScene("Main");
     }
 
