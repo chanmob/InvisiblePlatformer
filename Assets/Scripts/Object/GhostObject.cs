@@ -36,10 +36,12 @@ public class GhostObject : MonoBehaviour
         if (player.transform.position.x > transform.position.x)
         {
             lookRight = true;
+            transform.localScale = new Vector3(-1, 1, 1);
         }
         else
         {
             lookRight = false;
+            transform.localScale = new Vector3(1, 1, 1);
         }
 
         if (move)

@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         box2d = GetComponent<BoxCollider2D>();
-        playerLookRight = false;
+        playerLookRight = true;
 
         rb2d.gravityScale = 3;
         speed = 10;
