@@ -55,6 +55,7 @@ public class FireObject : MonoBehaviour
                     bo.dir = BulletObject.Direction.Left;
                     break;
             }
+            bo.DirectionSetting();
         }
     }
 }

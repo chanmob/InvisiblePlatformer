@@ -7,7 +7,7 @@ public class StageUnLockManager : MonoBehaviour
 {
     private readonly string sceneName = "Level";
 
-    public int maxLevel { private set; get; }
+    public int maxLevel { private set; get; } = 50;
     public int curLevel { private set; get; }
 
     public GameObject buttonParent;
@@ -37,13 +37,14 @@ public class StageUnLockManager : MonoBehaviour
         }
 
         curLevel = SaveAndLoad.instance.LoadIntData("CurLevel");
-        curLevel++;
+        Debug.Log(curLevel);
 
-        //For Test
-        curLevel = 50;
-
-
-        for(int i = 0; i < curLevel; i++)
+        if (curLevel > maxLevel)
+        {
+            curLevel = maxLevel;
+        }
+        
+        for(int i = 0; i < curLevel + 1; i++)
         {
             sceneButtons[i].interactable = true;
             sceneButtons[i].GetComponent<CanvasGroup>().alpha = 1f;
