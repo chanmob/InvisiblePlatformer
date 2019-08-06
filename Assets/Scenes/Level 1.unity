@@ -2841,26 +2841,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7868457411064993838, guid: 5b2861ffc08ea4e458984ddd78b231aa,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7868457412058828500, guid: 5b2861ffc08ea4e458984ddd78b231aa,
-        type: 3}
-      propertyPath: m_Name
-      value: Clear
-      objectReference: {fileID: 0}
-    - target: {fileID: 7868457412300676748, guid: 5b2861ffc08ea4e458984ddd78b231aa,
-        type: 3}
-      propertyPath: m_Name
-      value: ClearTime
-      objectReference: {fileID: 0}
-    - target: {fileID: 7868457412762500979, guid: 5b2861ffc08ea4e458984ddd78b231aa,
-        type: 3}
-      propertyPath: m_Name
-      value: BestTime
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b2861ffc08ea4e458984ddd78b231aa, type: 3}
 --- !u!1001 &8061861974925296584

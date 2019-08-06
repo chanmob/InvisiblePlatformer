@@ -26,8 +26,22 @@ public class GameManager : Singleton<GameManager>
         var objectinUI = ui.GetComponentsInChildren<Transform>(true);
 
         timeText = objectinUI.FindInObjects("TimeText").GetComponent<Text>();
-        pausePanel = objectinUI.FindInObjects("ResumePanel");
+        pausePanel = objectinUI.FindInObjects("PausePanel");
         resultPanel = objectinUI.FindInObjects("ResultPanel");
+        objectinUI.FindInObjects("PauseButton").GetComponent<Button>().onClick.AddListener(() => PauseGame());
+
+        var pause = pausePanel.GetComponentsInChildren<Transform>(true);
+        pause.FindInObjects("Restart").GetComponent<Button>().onClick.AddListener(() => {
+            Time.timeScale = 1f;
+            SceneLoad.instance.LoadedSceneLoad();
+        });
+        pause.FindInObjects("Main").GetComponent<Button>().onClick.AddListener(() => MainScene());
+        pause.FindInObjects("Quit").GetComponent<Button>().onClick.AddListener(() => QuitGame());
+
+        var result = resultPanel.GetComponentsInChildren<Transform>(true);
+        result.FindInObjects("Next").GetComponent<Button>().onClick.AddListener(() => OpenNextScene());
+        result.FindInObjects("Main").GetComponent<Button>().onClick.AddListener(() => MainScene());
+        result.FindInObjects("Quit").GetComponent<Button>().onClick.AddListener(() => QuitGame());
     }
 
     private void FixedUpdate()
@@ -48,12 +62,14 @@ public class GameManager : Singleton<GameManager>
     public void PauseGame()
     {
         Time.timeScale = 0;
+        pausePanel.SetActive(true);
         mobileController.SetActive(false);
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1f;
+        pausePanel.SetActive(false);
         mobileController.SetActive(true);
     }
 
@@ -70,7 +86,10 @@ public class GameManager : Singleton<GameManager>
         string[] sceneName = SceneManager.GetActiveScene().name.Split(' ');
         int level = int.Parse(sceneName[1]);
         Debug.Log(level);
-        SaveAndLoad.instance.SaveIntData("CurLevel", level);
+        if (SaveAndLoad.instance.LoadIntData("CurLevel") < level)
+        {
+            SaveAndLoad.instance.SaveIntData("CurLevel", level);
+        }
         string saveName = SceneManager.GetActiveScene().name + "Clear";
         float time = (float)timespan.TotalSeconds;
 

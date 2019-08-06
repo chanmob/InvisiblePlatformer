@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 7868457411162179545}
   - component: {fileID: 7868457411162179544}
   m_Layer: 5
-  m_Name: ResumePanel
+  m_Name: PausePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 7868457411412950496}
   - component: {fileID: 7868457411412950511}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: BestTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -795,7 +795,7 @@ GameObject:
   - component: {fileID: 7868457411950993341}
   - component: {fileID: 7868457411950993340}
   m_Layer: 5
-  m_Name: Text
+  m_Name: PauseText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1070,7 +1070,7 @@ GameObject:
   - component: {fileID: 7868457412123841207}
   - component: {fileID: 7868457412123841206}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: CurrentTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1229,7 +1229,7 @@ GameObject:
   - component: {fileID: 7868457412371756315}
   - component: {fileID: 7868457412371756314}
   m_Layer: 5
-  m_Name: Button
+  m_Name: PauseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
