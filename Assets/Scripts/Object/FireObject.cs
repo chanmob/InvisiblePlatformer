@@ -17,6 +17,10 @@ public class FireObject : MonoBehaviour
     public float speed;
     public float startDelay;
     public float delayTime;
+    public float randomMinDelay;
+    public float randomMaxDelay;
+
+    public bool random;
 
     private IEnumerator Start()
     {
@@ -32,14 +36,21 @@ public class FireObject : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(delayTime);
+            if (random)
+            {
+                float ran = Random.Range(randomMinDelay, randomMaxDelay);
+                yield return new WaitForSeconds(ran);
+            }
+            else
+            {
+                yield return new WaitForSeconds(delayTime);
+            }
 
             var bullet = ObjectPoolManager.instance.GetBullet();
             bullet.transform.position = transform.position;
             var bo = bullet.GetComponent<BulletObject>();
-
-
             bo.speed = speed;
+
             switch (direction)
             {
                 case Direction.Up:
@@ -55,7 +66,9 @@ public class FireObject : MonoBehaviour
                     bo.dir = BulletObject.Direction.Left;
                     break;
             }
+
             bo.DirectionSetting();
+            bullet.SetActive(true);
         }
     }
 }

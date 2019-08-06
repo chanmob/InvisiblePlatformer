@@ -15,6 +15,7 @@ public class EnterMovePlatform : MonoBehaviour
     public Direction dir;
 
     private bool move;
+    public bool oneWay;
 
     public float speed;
 
@@ -106,7 +107,10 @@ public class EnterMovePlatform : MonoBehaviour
         if (collision.gameObject.CompareTag("PlayerGrounded"))
         {
             collision.transform.parent.SetParent(null);
-            move = false;
+            if (!oneWay)
+            {
+                move = false;
+            }
         }
     }
 }

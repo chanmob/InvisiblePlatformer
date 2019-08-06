@@ -391,6 +391,11 @@ PrefabInstance:
       propertyPath: maxSpace
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 9119523849325053037, guid: 35f8864e1796c7a4a9579adeaeae0284,
+        type: 3}
+      propertyPath: oneWay
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35f8864e1796c7a4a9579adeaeae0284, type: 3}
 --- !u!4 &165869508 stripped
@@ -736,6 +741,11 @@ PrefabInstance:
       propertyPath: maxSpace
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 9119523849325053037, guid: 35f8864e1796c7a4a9579adeaeae0284,
+        type: 3}
+      propertyPath: oneWay
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35f8864e1796c7a4a9579adeaeae0284, type: 3}
 --- !u!4 &594270764 stripped
@@ -825,6 +835,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxSpace
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119523849325053037, guid: 35f8864e1796c7a4a9579adeaeae0284,
+        type: 3}
+      propertyPath: oneWay
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35f8864e1796c7a4a9579adeaeae0284, type: 3}

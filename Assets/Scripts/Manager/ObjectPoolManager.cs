@@ -6,13 +6,19 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
 {
     private List<GameObject> bulletLists = new List<GameObject>();
     public GameObject bulletPrefab;
- 
+
+    private void Start()
+    {
+        CreateBulletObject(10);
+    }
+
     private void CreateBulletObject(int _count)
     {
         for(int i = 0; i < _count; i++)
         {
             var b = Instantiate(bulletPrefab);
             bulletLists.Add(b);
+            b.transform.SetParent(transform);
             b.SetActive(false);
         }
     }
@@ -29,6 +35,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         else
         {
             returnBullet = Instantiate(bulletPrefab);
+            returnBullet.transform.SetParent(transform);
         }
 
         return returnBullet;
