@@ -88,8 +88,11 @@ public class GameManager : Singleton<GameManager>
         var cc = GameObject.FindObjectOfType<CameraBackground>();
         StartCoroutine(cc.CameraBackgroundToWhite());
 
-        var mm = GameObject.Find("DieMarkManager").GetComponent<DieMarkManager>();
-        mm.ClearDieMark();
+        var mm = GameObject.Find("DieMarkManager");
+        if (mm != null)
+        {
+            mm.GetComponent<DieMarkManager>().ClearDieMark();
+        }
 
         string[] sceneName = SceneManager.GetActiveScene().name.Split(' ');
         int level = int.Parse(sceneName[1]);
@@ -148,9 +151,12 @@ public class GameManager : Singleton<GameManager>
 
     private void MainScene()
     {
-        var mm = GameObject.Find("DieMarkManager").GetComponent<DieMarkManager>();
-        mm.ClearDieMark();
-
+        var mm = GameObject.Find("DieMarkManager");
+        if(mm != null)
+        {
+            mm.GetComponent<DieMarkManager>().ClearDieMark();
+        }
+        
         SceneLoad.instance.LoadScene("Main");
     }
 
