@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class StageUnLockManager : MonoBehaviour
 {
@@ -31,7 +32,10 @@ public class StageUnLockManager : MonoBehaviour
             var timeText = sceneButtons[i].transform.FindInChildren("Time").GetComponent<Text>();
             string loadName = sceneName + " " + count + "Clear";
 
-            timeText.text = SaveAndLoad.instance.LoadFloatData(loadName).ToString("00 : 00 : 000");
+            var clearTime = SaveAndLoad.instance.LoadFloatData(loadName);
+            TimeSpan ts = TimeSpan.FromSeconds(clearTime);
+            var tsHour = ts.TotalHours;
+            timeText.text = string.Format("{0:00} : {1:00} : {2:000}", ts.Minutes + tsHour, ts.Seconds, ts.Milliseconds);
 
             count++;
         }

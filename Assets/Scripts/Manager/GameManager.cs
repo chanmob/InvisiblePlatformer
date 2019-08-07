@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
     private GameObject mobileController;
     private GameObject pausePanel;
     private GameObject resultPanel;
+    private GameObject newRecord;
 
     private bool end = false;
 
@@ -42,6 +43,7 @@ public class GameManager : Singleton<GameManager>
         result.FindInObjects("Next").GetComponent<Button>().onClick.AddListener(() => OpenNextScene());
         result.FindInObjects("Main").GetComponent<Button>().onClick.AddListener(() => MainScene());
         result.FindInObjects("Quit").GetComponent<Button>().onClick.AddListener(() => QuitGame());
+        newRecord = result.FindInObjects("NewRecord");
     }
 
     private void FixedUpdate()
@@ -88,9 +90,12 @@ public class GameManager : Singleton<GameManager>
         Debug.Log(level);
         if (SaveAndLoad.instance.LoadIntData("CurLevel") < level)
         {
+            Debug.Log("저장");
             SaveAndLoad.instance.SaveIntData("CurLevel", level);
         }
+
         string saveName = SceneManager.GetActiveScene().name + "Clear";
+        Debug.Log(saveName);
         float time = (float)timespan.TotalSeconds;
 
         SaveAndLoad.instance.HasData(saveName, exist =>
@@ -99,9 +104,10 @@ public class GameManager : Singleton<GameManager>
             {
                 float beforeData = SaveAndLoad.instance.LoadFloatData(saveName);
 
-                if (time > beforeData)
+                if (time < beforeData)
                 {
                     SaveAndLoad.instance.SaveFloatData(saveName, time);
+                    newRecord.SetActive(true);
                 }
                 else
                 {
@@ -111,14 +117,16 @@ public class GameManager : Singleton<GameManager>
             else
             {
                 SaveAndLoad.instance.SaveFloatData(saveName, time);
+                newRecord.SetActive(true);
             }
         });
 
-        var t = timespan.TotalHours * 60;
-        resultPanel.transform.FindInChildren("ClearTime").GetComponent<Text>().text = string.Format("클리어 시간 : " + "{0:00} : {1:00} : {2:000}", timespan.Minutes + t, timespan.Seconds, timespan.Milliseconds);
+        var h = timespan.TotalHours * 60;
+        resultPanel.transform.FindInChildren("ClearTime").GetComponent<Text>().text = string.Format("클리어 시간 : " + "{0:00} : {1:00} : {2:000}", timespan.Minutes + h, timespan.Seconds, timespan.Milliseconds);
 
         TimeSpan ts = TimeSpan.FromSeconds(time);
-        resultPanel.transform.FindInChildren("BestTime").GetComponent<Text>().text = string.Format("최고 기록 : " + "{0:00} : {1:00} : {2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds);
+        var tsHour = ts.TotalHours * 60;
+        resultPanel.transform.FindInChildren("BestTime").GetComponent<Text>().text = string.Format("최고 기록 : " + "{0:00} : {1:00} : {2:000}", ts.Minutes + tsHour, ts.Seconds, ts.Milliseconds);
 
         yield return new WaitForSeconds(2f);
 

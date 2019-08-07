@@ -11,6 +11,11 @@ public class SaveAndLoad : Singleton<SaveAndLoad>
         ObscuredPrefs.DeleteKey(_key);
     }
 
+    public void DeleteAll()
+    {
+        ObscuredPrefs.DeleteAll();
+    }
+
     public void HasData(string _key, Action<bool> _callback = null)
     {
         var result = ObscuredPrefs.HasKey(_key);
