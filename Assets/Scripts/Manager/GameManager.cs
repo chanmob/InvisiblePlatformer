@@ -17,6 +17,8 @@ public class GameManager : Singleton<GameManager>
 
     private bool end = false;
 
+    private float time;
+
     private TimeSpan timespan;
 
     private void Awake()
@@ -46,12 +48,14 @@ public class GameManager : Singleton<GameManager>
         newRecord = result.FindInObjects("NewRecord");
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (end)
             return;
 
-        timespan = TimeSpan.FromSeconds(Time.time);
+        time += Time.deltaTime;
+
+        timespan = TimeSpan.FromSeconds(time);
         var t = timespan.TotalHours * 60;
         timeText.text = string.Format("{0:00} : {1:00} : {2:000}", timespan.Minutes + t, timespan.Seconds, timespan.Milliseconds);
     }
@@ -82,8 +86,10 @@ public class GameManager : Singleton<GameManager>
         GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().isDead = true;
 
         var cc = GameObject.FindObjectOfType<CameraBackground>();
-
         StartCoroutine(cc.CameraBackgroundToWhite());
+
+        var mm = GameObject.Find("DieMarkManager").GetComponent<DieMarkManager>();
+        mm.ClearDieMark();
 
         string[] sceneName = SceneManager.GetActiveScene().name.Split(' ');
         int level = int.Parse(sceneName[1]);
