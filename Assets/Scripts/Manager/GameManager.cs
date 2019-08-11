@@ -46,6 +46,8 @@ public class GameManager : Singleton<GameManager>
         result.FindInObjects("Main").GetComponent<Button>().onClick.AddListener(() => MainScene());
         result.FindInObjects("Quit").GetComponent<Button>().onClick.AddListener(() => QuitGame());
         newRecord = result.FindInObjects("NewRecord");
+
+        Camera.main.GetComponent<AudioSource>().loop = true;
     }
 
     private void Update()
@@ -76,8 +78,8 @@ public class GameManager : Singleton<GameManager>
         var clearTime = SaveAndLoad.instance.LoadFloatData(SceneManager.GetActiveScene().name + "Clear");
         TimeSpan ts = TimeSpan.FromSeconds(clearTime);
         var tsHour = ts.TotalHours;
-        timeText.text = string.Format("{0:00} : {1:00} : {2:000}", ts.Minutes + tsHour, ts.Seconds, ts.Milliseconds);
-        pauseUI.FindInObjects("BestTime").GetComponent<Text>().text = string.Format("{0:00} : {1:00} : {2:000}", timespan.Minutes + th, timespan.Seconds, timespan.Milliseconds);
+        timeText.text = string.Format("현재 까지 : {0:00} : {1:00} : {2:000}", ts.Minutes + tsHour, ts.Seconds, ts.Milliseconds);
+        pauseUI.FindInObjects("BestTime").GetComponent<Text>().text = string.Format("최고 기록 : {0:00} : {1:00} : {2:000}", timespan.Minutes + th, timespan.Seconds, timespan.Milliseconds);
 
         pausePanel.SetActive(true);
         mobileController.SetActive(false);

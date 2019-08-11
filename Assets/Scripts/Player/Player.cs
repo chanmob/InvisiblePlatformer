@@ -18,6 +18,10 @@ public class Player : MonoBehaviour
     private Vector3 originalScale;
     private BoxCollider2D box2d;
 
+    public AudioClip jumpClip;
+    public AudioClip dieClip;
+    public AudioClip clearClip;
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -119,6 +123,8 @@ public class Player : MonoBehaviour
     {
         if (grounded)
         {
+            SoundManager.instance.PlayAudio(jumpClip);
+
             if (rb2d.gravityScale < 0)
             {
                 AddForceToPlayer(new Vector2(0, -jumpForce));
@@ -155,6 +161,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Hi");
             isDead = true;
+            SoundManager.instance.PlayAudio(dieClip);
             DieMarkManager.instance.DieMarkOnOff(true);
             DieMarkManager.instance.CreateDieMark(this.transform.position);
             this.gameObject.SetActive(false);
@@ -165,6 +172,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("End Game");
             isDead = true;
+            SoundManager.instance.PlayAudio(clearClip);
             rb2d.velocity = new Vector2(0, 0);
             rb2d.gravityScale = 0;
             gameObject.layer = 9;
@@ -179,6 +187,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Hi");
             isDead = true;
+            SoundManager.instance.PlayAudio(dieClip);
             DieMarkManager.instance.DieMarkOnOff(true);
             DieMarkManager.instance.CreateDieMark(this.transform.position);
             this.gameObject.SetActive(false);

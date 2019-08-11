@@ -148,6 +148,8 @@ MonoBehaviour:
   playerLookRight: 0
   isDead: 0
   rb2d: {fileID: 0}
+  jumpClip: {fileID: 8300000, guid: 5b303ad26fb65d640b084a4206fc5a8e, type: 3}
+  dieClip: {fileID: 8300000, guid: 205ad67eadbed61418ad444c45285dc1, type: 3}
 --- !u!1 &8061861975225100143
 GameObject:
   m_ObjectHideFlags: 0

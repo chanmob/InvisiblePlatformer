@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class TextBlink : MonoBehaviour
 {
     public Text text;
-    private IEnumerator blinkCoroutine;
 
     void Start()
     {

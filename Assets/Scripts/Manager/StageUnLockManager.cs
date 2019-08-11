@@ -41,7 +41,6 @@ public class StageUnLockManager : MonoBehaviour
         }
 
         curLevel = SaveAndLoad.instance.LoadIntData("CurLevel");
-        Debug.Log(curLevel);
 
         if (curLevel > maxLevel)
         {
@@ -52,6 +51,66 @@ public class StageUnLockManager : MonoBehaviour
         {
             sceneButtons[i].interactable = true;
             sceneButtons[i].GetComponent<CanvasGroup>().alpha = 1f;
+        }
+
+        if(curLevel < 50)
+        {
+            var blink = sceneButtons[curLevel].GetComponentsInChildren<Transform>(true);
+            StartCoroutine(StartTextBlink(blink.FindInObjects("Text").GetComponent<Text>()));
+            StartCoroutine(StartTextBlink(blink.FindInObjects("Time").GetComponent<Text>()));
+            StartCoroutine(StartImageBlink(blink.FindInObjects("Image").GetComponent<Image>()));
+        }
+    }
+
+    private IEnumerator StartImageBlink(Image _image)
+    {
+        float[] alphas = new float[]
+        {
+            0.5f,
+            1f
+        };
+
+        float alpha;
+        int idx = 0;
+
+        while (true)
+        {
+            alpha = alphas[idx];
+
+            _image.CrossFadeAlpha(alpha, 0.5f, false);
+
+            yield return new WaitForSeconds(0.5f);
+
+            idx++;
+
+            if (idx >= alphas.Length)
+                idx = 0;
+        }
+    }
+
+    private IEnumerator StartTextBlink(Text _text)
+    {
+        float[] alphas = new float[]
+        {
+            0.5f,
+            1f
+        };
+
+        float alpha;
+        int idx = 0;
+
+        while (true)
+        {
+            alpha = alphas[idx];
+
+            _text.CrossFadeAlpha(alpha, 0.5f, false);
+
+            yield return new WaitForSeconds(0.5f);
+
+            idx++;
+
+            if (idx >= alphas.Length)
+                idx = 0;
         }
     }
 }
