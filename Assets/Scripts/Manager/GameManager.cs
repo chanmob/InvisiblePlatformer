@@ -73,13 +73,12 @@ public class GameManager : Singleton<GameManager>
 
         var pauseUI = pausePanel.transform.GetComponentsInChildren<Transform>(true);
         var th = timespan.TotalHours * 60;
-        pauseUI.FindInObjects("CurrentTime").GetComponent<Text>().text = string.Format("{0:00} : {1:00} : {2:000}", timespan.Minutes + th, timespan.Seconds, timespan.Milliseconds);
+        pauseUI.FindInObjects("CurrentTime").GetComponent<Text>().text = string.Format("현재 까지 : {0:00} : {1:00} : {2:000}", timespan.Minutes + th, timespan.Seconds, timespan.Milliseconds);
 
         var clearTime = SaveAndLoad.instance.LoadFloatData(SceneManager.GetActiveScene().name + "Clear");
         TimeSpan ts = TimeSpan.FromSeconds(clearTime);
         var tsHour = ts.TotalHours;
-        timeText.text = string.Format("현재 까지 : {0:00} : {1:00} : {2:000}", ts.Minutes + tsHour, ts.Seconds, ts.Milliseconds);
-        pauseUI.FindInObjects("BestTime").GetComponent<Text>().text = string.Format("최고 기록 : {0:00} : {1:00} : {2:000}", timespan.Minutes + th, timespan.Seconds, timespan.Milliseconds);
+        pauseUI.FindInObjects("BestTime").GetComponent<Text>().text = string.Format("최고 기록 : {0:00} : {1:00} : {2:000}", timespan.Minutes + tsHour, timespan.Seconds, timespan.Milliseconds);
 
         pausePanel.SetActive(true);
         mobileController.SetActive(false);
