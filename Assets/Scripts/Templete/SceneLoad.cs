@@ -10,9 +10,9 @@ public class SceneLoad : Singleton<SceneLoad>
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void LoadScene(string _sceneName)
+    public void LoadScene(string _sceneName, LoadSceneMode _mode = 0)
     {
-        SceneManager.LoadScene(_sceneName);
+        SceneManager.LoadScene(_sceneName, _mode);
     }
 
     public void LoadScene(int _sceneIdx)

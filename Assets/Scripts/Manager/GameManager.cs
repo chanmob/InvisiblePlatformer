@@ -40,6 +40,8 @@ public class GameManager : Singleton<GameManager>
         });
         pause.FindInObjects("Main").GetComponent<Button>().onClick.AddListener(() => MainScene());
         pause.FindInObjects("Quit").GetComponent<Button>().onClick.AddListener(() => QuitGame());
+        AdmobManager._instance.noAd = pause.FindInObjects("NoAD");
+        pause.FindInObjects("AdNext").GetComponent<Button>().onClick.AddListener(() => AdmobManager._instance.ShowRewardAD());
 
         var result = resultPanel.GetComponentsInChildren<Transform>(true);
         result.FindInObjects("Next").GetComponent<Button>().onClick.AddListener(() => OpenNextScene());
@@ -78,7 +80,7 @@ public class GameManager : Singleton<GameManager>
         var clearTime = SaveAndLoad.instance.LoadFloatData(SceneManager.GetActiveScene().name + "Clear");
         TimeSpan ts = TimeSpan.FromSeconds(clearTime);
         var tsHour = ts.TotalHours;
-        pauseUI.FindInObjects("BestTime").GetComponent<Text>().text = string.Format("최고 기록 : {0:00} : {1:00} : {2:000}", timespan.Minutes + tsHour, timespan.Seconds, timespan.Milliseconds);
+        pauseUI.FindInObjects("BestTime").GetComponent<Text>().text = string.Format("최고 기록 : {0:00} : {1:00} : {2:000}", ts.Minutes + tsHour, ts.Seconds, ts.Milliseconds);
 
         pausePanel.SetActive(true);
         mobileController.SetActive(false);
@@ -96,6 +98,7 @@ public class GameManager : Singleton<GameManager>
         end = true;
         mobileController.SetActive(false);
         GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().isDead = true;
+        AdmobManager._instance.noAd = null;
 
         var cc = GameObject.FindObjectOfType<CameraBackground>();
         StartCoroutine(cc.CameraBackgroundToWhite());
@@ -150,6 +153,8 @@ public class GameManager : Singleton<GameManager>
         resultPanel.transform.FindInChildren("BestTime").GetComponent<Text>().text = string.Format("최고 기록 : " + "{0:00} : {1:00} : {2:000}", ts.Minutes + tsHour, ts.Seconds, ts.Milliseconds);
 
         yield return new WaitForSeconds(2f);
+
+        AdmobManager._instance.ShowScreenAD();
 
         resultPanel.SetActive(true);
     }
