@@ -50,6 +50,7 @@ public class GameManager : Singleton<GameManager>
         newRecord = result.FindInObjects("NewRecord");
 
         Camera.main.GetComponent<AudioSource>().loop = true;
+        Camera.main.GetComponent<AudioSource>().volume = 0.7f;
     }
 
     private void Update()
@@ -173,6 +174,8 @@ public class GameManager : Singleton<GameManager>
         {
             mm.GetComponent<DieMarkManager>().ClearDieMark();
         }
+
+        Time.timeScale = 1;
         
         SceneLoad.instance.LoadScene("Main");
     }

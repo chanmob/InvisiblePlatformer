@@ -35,7 +35,7 @@ public class MainUI : MonoBehaviour
 
     public void Review()
     {
-        Application.OpenURL("https://play.google.com/store/apps/details?id=com.ChanMob.CellCorporation");
+        Application.OpenURL("https://play.google.com/store/apps/details?id=com.ChanMob.ParallelWorld");
     }
 
     public void SoundControl()

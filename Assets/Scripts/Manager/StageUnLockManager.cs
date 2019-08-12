@@ -40,20 +40,22 @@ public class StageUnLockManager : MonoBehaviour
             count++;
         }
 
+        Debug.Log("Start 시작");
+
         curLevel = SaveAndLoad.instance.LoadIntData("CurLevel");
 
         if (curLevel > maxLevel)
         {
             curLevel = maxLevel;
         }
-        
-        for(int i = 0; i < curLevel + 1; i++)
+
+        for (int i = 0; i < curLevel + 1; i++)
         {
             sceneButtons[i].interactable = true;
             sceneButtons[i].GetComponent<CanvasGroup>().alpha = 1f;
         }
 
-        if(curLevel < 50)
+        if (curLevel < 50)
         {
             var blink = sceneButtons[curLevel].GetComponentsInChildren<Transform>(true);
             StartCoroutine(StartTextBlink(blink.FindInObjects("Text").GetComponent<Text>()));
